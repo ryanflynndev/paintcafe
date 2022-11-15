@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
+  reactStrictMode: true,
+  swcMinify: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [{ loader: '@svgr/webpack' }],
+    });
+    return config;
   },
+  experimental:{ appDir: true },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
